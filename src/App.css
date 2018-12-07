@@ -1,32 +1,88 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 100%;
+}
+
+header {
+  background-color: #333;
   color: white;
+  height: 60px;
+  padding-left: 35px;
+}
+h1 {
+  font-size: 30px;
+  padding:0;
+  height: 60px;
+  line-height: 60px;
+  vertical-align: middle;
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.content-col {
+  width: 50%;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  /*background-color: blue;*/
+  border-right: 2px solid #ddd;
+}
+
+.right {
+  /*background-color: green;*/
+}
+
+textarea {
+  resize: none;
+  flex:1;
+  background-color: #f1f1f1;
+  /*border:none;*/
+  border-radius: 0px;
+  outline: none !important;
+  padding: 10px;
+}
+.buttons {
+  height: 50px;
+}
+
+.buttons button {
+  margin-top: 10px;
+  padding: 3px 10px 3px 10px;
+  margin-right: 10px;
+  background-color: aquamarine;
+  border: 2px solid #333;
+  font-weight: bold;
+  cursor: pointer;
+  height: 30px;
+  font-family: 'Roboto';
+}
+
+
+@media (max-width: 700px) {
+  .content {
+  flex-direction: column;
+
   }
-  to {
-    transform: rotate(360deg);
+  .content-col {
+width: calc(100% - 70px);
+    flex:1;
   }
+  .left {
+    border-bottom: 2px solid #ddd;
+    border-right: none;
+
+  }
+
 }
