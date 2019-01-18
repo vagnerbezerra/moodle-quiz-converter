@@ -62,7 +62,6 @@ class App extends Component {
   }
   convert() {
     const {from, to, left} = this.state;
-    console.log(from, to)
     if (from === "xml" && to === "json") {
       moodleXMLtoJson(left, (res,err)=>{
         let right = JSON.stringify(res, null, 2)
@@ -74,9 +73,8 @@ class App extends Component {
         }
         this.setState({right});
       })
-    } else if (from === "aiken" && to === "json") {
+    } else if (from === "txt" && to === "json") {
       aikenToMoodleXML(left, (result,error)=>{
-        console.log(result)
         moodleXMLtoJson(result.replace(/\t/g, "  "), (res,err)=>{
           let right = JSON.stringify(res, null, 2)
           if (err) {
@@ -88,7 +86,7 @@ class App extends Component {
           this.setState({right});
         })
       })
-    } else if (from === "aiken" && to === "xml") {
+    } else if (from === "txt" && to === "xml") {
       aikenToMoodleXML(left, (res, err) => {
           let right = (res)
           .replace(/\t/g, "  ");
@@ -101,6 +99,8 @@ class App extends Component {
           }
           this.setState({right});
       })
+    } else if (from === "xml" && to === "xml") {
+      this.setState({right: left});
     }
   }
 
@@ -131,8 +131,8 @@ class App extends Component {
       localStorage.moodleXMLtoJson = JSON.stringify({left, right, from, to});
     };
     if (localStorage.moodleXMLtoJson) {
-      const {left, right, from, to} = JSON.parse(localStorage.moodleXMLtoJson);
-      this.setState({left, right, from, to});
+      const {left, from, to} = JSON.parse(localStorage.moodleXMLtoJson);
+      this.setState({left, from, to});
     }
   }
 
