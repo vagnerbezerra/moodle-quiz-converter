@@ -21,7 +21,9 @@ h1 {
 
 h1 i {
   font-size: 50px;
-  color: #E84100;
+  color: #20BEB8;
+  vertical-align: middle;
+  font-size: 36px !important;
 }
 
 h2 {
@@ -63,7 +65,7 @@ select {
 textarea {
   resize: none;
   flex:1;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
   /*border:none;*/
   border-radius: 0px;
   outline: none !important;
@@ -76,15 +78,16 @@ textarea {
 .buttons button {
   margin-top: 10px;
   padding: 3px 20px 3px 20px;
-  font-size: 16px;
+  font-size: 20px;
   margin-right: 10px;
-  background-color: #e84100;
-  border: 2px solid #e84100;
+  background-color: #20BEB8;
+  border: 2px solid #20BEB8;
   color: white;
   /*font-weight: bold;*/
   cursor: pointer;
-  height: 40px;
+  height: 42px;
   font-family: 'Roboto';
+  outline: none;
 
 }
 .buttons button:hover i {
@@ -104,7 +107,7 @@ textarea {
 
   }
   .content-col {
-width: calc(100% - 70px);
+    width: calc(100% - 70px);
     flex:1;
   }
   .left {

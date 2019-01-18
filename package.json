@@ -1,9 +1,9 @@
 {
-  "name": "moodlexml-to-json-web",
+  "name": "quiz-converter",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "moodlexml-to-json": "^1.0.1-beta",
+    "aiken-to-moodlexml": "^1.0.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"

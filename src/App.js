@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import moodleXMLtoJson from 'moodlexml-to-json';
+import aikenToMoodleXML from 'aiken-to-moodlexml';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,27 +15,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <header><h1><i className="material-icons">school</i>  MoodleXML to JSON</h1></header>
+       <header><h1> <i className="material-icons">school</i> QUIZ converter</h1></header>
        <div className="content"> 
           <div className="content-col left">
             <div><h2>From</h2>
             <select onChange={(e)=>{this.setState({from: e.target.value})}} value={this.state.from}>
               <option value="xml" >MoodleXML</option>
-              <option disabled value="aiken" >Aiken</option>
+              <option value="txt" >Aiken</option>
               <option disabled value="json" >JSON</option>
             </select>
             </div>
             <textarea onChange={(e)=>{this.onWrite(e,'left')}} value={this.state.left}></textarea>
             <div className="buttons">
               <button onClick={this.convert.bind(this)}>
-                <i className="material-icons">play_arrow</i>Convert</button>
+                <i className="material-icons">play_arrow</i>Convert
+              </button>
+              <button onClick={this.reset.bind(this)}>
+                <i className="material-icons">replay</i>Reset
+              </button>
             </div>
           </div>
           <div className="content-col right">
             <div><h2>To</h2>
-            <select onChange={(e)=>{this.setState({to: e.target.value})}}>
-              <option disabled value="xml" >MoodleXML</option>
-              <option disabled value="aiken" >Aiken</option>
+            <select onChange={(e)=>{this.setState({to: e.target.value})}} value={this.state.to}>
+              <option value="xml" >MoodleXML</option>
+              <option disabled value="txt" >Aiken</option>
               <option value="json" >JSON</option>
             </select>
             </div>
@@ -46,7 +51,7 @@ class App extends Component {
               }}>
                 <i className="material-icons">file_copy</i>Copy
               </button>
-              <button onClick={()=>{this.download("quiz.json", this.state.right)}}>
+              <button onClick={()=>{this.download("quiz."+this.state.to, this.state.right)}}>
                 <i className="material-icons">cloud_download</i>Download
               </button>
             </div>
@@ -56,18 +61,53 @@ class App extends Component {
     );
   }
   convert() {
-    moodleXMLtoJson(this.state.left, (res,err)=>{
-      console.log(res,err)
-      let right = JSON.stringify(res, null, 2)
-      if (err) {
-        alert("Not a valid MoodleXML file");
-        this.setState({right: ''});
-        return;
-      }
-      this.setState({right});
-    })
-    
+    const {from, to, left} = this.state;
+    console.log(from, to)
+    if (from === "xml" && to === "json") {
+      moodleXMLtoJson(left, (res,err)=>{
+        let right = JSON.stringify(res, null, 2)
+        if (err) {
+          console.error(err);
+          alert("Not a valid MoodleXML file");
+          this.setState({right: ''});
+          return;
+        }
+        this.setState({right});
+      })
+    } else if (from === "aiken" && to === "json") {
+      aikenToMoodleXML(left, (result,error)=>{
+        console.log(result)
+        moodleXMLtoJson(result.replace(/\t/g, "  "), (res,err)=>{
+          let right = JSON.stringify(res, null, 2)
+          if (err) {
+            console.error(err);
+            alert("Not a valid Aiken file");
+            this.setState({right: ''});
+            return;
+          }
+          this.setState({right});
+        })
+      })
+    } else if (from === "aiken" && to === "xml") {
+      aikenToMoodleXML(left, (res, err) => {
+          let right = (res)
+          .replace(/\t/g, "  ");
+          console.log(right)
+          if (err) {
+            console.error(err);
+            alert("Not a valid Aiken file");
+            this.setState({right: ''});
+            return;
+          }
+          this.setState({right});
+      })
+    }
   }
+
+  reset() {
+    this.setState({left:"", right: ""});
+  }
+
   onWrite(e,side){
     this.setState({ [side]: e.target.value});
   }
@@ -83,6 +123,17 @@ class App extends Component {
     element.click();
 
     document.body.removeChild(element);
+  }
+
+  componentDidMount(){
+    window.onbeforeunload = (e) => {
+      const {left, right, from, to} = this.state;
+      localStorage.moodleXMLtoJson = JSON.stringify({left, right, from, to});
+    };
+    if (localStorage.moodleXMLtoJson) {
+      const {left, right, from, to} = JSON.parse(localStorage.moodleXMLtoJson);
+      this.setState({left, right, from, to});
+    }
   }
 
 
