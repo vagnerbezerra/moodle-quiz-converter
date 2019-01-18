@@ -90,7 +90,6 @@ class App extends Component {
       aikenToMoodleXML(left, (res, err) => {
           let right = (res)
           .replace(/\t/g, "  ");
-          console.log(right)
           if (err) {
             console.error(err);
             alert("Not a valid Aiken file");
