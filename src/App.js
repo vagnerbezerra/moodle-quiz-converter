@@ -16,7 +16,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <header><h1> <i className="material-icons">school</i> QUIZ converter</h1></header>
+        <header>
+          <h1> <i className="material-icons">school</i> QUIZ converter</h1>
+          <div class="links">
+            <a target="_blank" rel="noreferrer noopener" href="https://docs.moodle.org/38/en/Moodle_XML_format">MoodleXML</a>
+            <a target="_blank" rel="noreferrer noopener" href="https://docs.moodle.org/38/en/Aiken_format">Aiken</a>
+          </div>
+        </header>
        <div className="content"> 
           <div className="content-col left">
             <div><h2>From</h2>
@@ -25,6 +31,7 @@ class App extends Component {
               <option value="txt" >Aiken</option>
               {/* <option disabled value="json" >JSON</option> */}
             </select>
+            
             </div>
             <textarea onChange={(e)=>{this.onWrite(e,'left')}} value={this.state.left}></textarea>
             <div className="buttons">
