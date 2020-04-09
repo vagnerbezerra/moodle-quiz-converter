@@ -23,7 +23,7 @@ class App extends Component {
             <select onChange={(e)=>{this.setState({from: e.target.value})}} value={this.state.from}>
               <option value="xml" >MoodleXML</option>
               <option value="txt" >Aiken</option>
-              <option disabled value="json" >JSON</option>
+              {/* <option disabled value="json" >JSON</option> */}
             </select>
             </div>
             <textarea onChange={(e)=>{this.onWrite(e,'left')}} value={this.state.left}></textarea>
@@ -40,7 +40,7 @@ class App extends Component {
             <div><h2>To</h2>
             <select onChange={(e)=>{this.setState({to: e.target.value})}} value={this.state.to}>
               <option value="xml" >MoodleXML</option>
-              <option disabled value="txt" >Aiken</option>
+              {/* <option disabled value="txt" >Aiken</option> */}
               <option value="json" >JSON</option>
             </select>
             </div>
@@ -131,11 +131,16 @@ class App extends Component {
 
   componentDidMount(){
     window.onbeforeunload = (e) => {
-      const {left, right, from, to} = this.state;
-      localStorage.moodleXMLtoJson = JSON.stringify({left, right, from, to});
+      let {left, right, from, to} = this.state;
+      if (left === "") {
+        localStorage.removeItem("moodleXMLtoJson");
+      } else {
+        localStorage.moodleXMLtoJson = JSON.stringify({left, right, from, to});
+      }
     };
     if (localStorage.moodleXMLtoJson) {
       const {left, from, to} = JSON.parse(localStorage.moodleXMLtoJson);
+      console.log(left, from, to)
       this.setState({left, from, to});
     }
   }

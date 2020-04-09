@@ -1,4 +1,4 @@
-exports.default = `1. When must a Post Implementation Review take place?
+const aiken =  `1. When must a Post Implementation Review take place?
 A. After every Change
 B. At the request of the person who submitted the Change request
 C. In case of emergency changes
@@ -58,3 +58,5 @@ match: Finland
 3. Harbin
 match: China
 Feedback: Good job!`;
+
+export default aiken;
