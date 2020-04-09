@@ -65,7 +65,7 @@ select {
 textarea {
   resize: none;
   flex:1;
-  background-color: #f5f5f5;
+  background-color: #fafafa;
   /*border:none;*/
   border-radius: 0px;
   outline: none !important;

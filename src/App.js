@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import moodleXMLtoJson from 'moodlexml-to-json';
 import aikenToMoodleXML from 'aiken-to-moodlexml';
+import sampleAiken from './sampleAiken';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      left: "",
+      left: sampleAiken,
       right :"",
-      from: 'xml',
-      to: 'json'
+      from: 'txt',
+      to: 'xml'
     }
   }
   render() {
@@ -62,40 +63,44 @@ class App extends Component {
   }
   convert() {
     const {from, to, left} = this.state;
+    console.log(from, to, left)
     if (from === "xml" && to === "json") {
       moodleXMLtoJson(left, (res,err)=>{
-        let right = JSON.stringify(res, null, 2)
         if (err) {
           console.error(err);
           alert("Not a valid MoodleXML file");
           this.setState({right: ''});
           return;
         }
+        let right = JSON.stringify(res, null, 2)
         this.setState({right});
       })
     } else if (from === "txt" && to === "json") {
-      aikenToMoodleXML(left, (result,error)=>{
+      aikenToMoodleXML(left, (result, error)=>{
+        console.log(result, error)
         moodleXMLtoJson(result.replace(/\t/g, "  "), (res,err)=>{
-          let right = JSON.stringify(res, null, 2)
           if (err) {
             console.error(err);
             alert("Not a valid Aiken file");
             this.setState({right: ''});
             return;
           }
+          let right = JSON.stringify(res, null, 2)
+          
           this.setState({right});
         })
       })
     } else if (from === "txt" && to === "xml") {
       aikenToMoodleXML(left, (res, err) => {
+        if (err) {
+          console.error(err);
+          alert("Not a valid Aiken file");
+          this.setState({right: ''});
+          return;
+        }
           let right = (res)
           .replace(/\t/g, "  ");
-          if (err) {
-            console.error(err);
-            alert("Not a valid Aiken file");
-            this.setState({right: ''});
-            return;
-          }
+          
           this.setState({right});
       })
     } else if (from === "xml" && to === "xml") {
