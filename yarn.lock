@@ -1359,10 +1359,10 @@ address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
-aiken-to-moodlexml@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/aiken-to-moodlexml/-/aiken-to-moodlexml-1.2.0.tgz#60f5885cf8b9c1f2b954b6aa381af0a28c4a73f5"
-  integrity sha512-t7l459nGdgSrgEKJ58uGwYWXjFVNPkE2Hl8QdrCX2FA1sXwXC9jA/pzxp8Bfw9Kly04LF9edBkKGNDAGsibWfw==
+aiken-to-moodlexml@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/aiken-to-moodlexml/-/aiken-to-moodlexml-1.2.1.tgz#b471b8a6bebde25b53b30f012a8ceae42fb4b5c6"
+  integrity sha512-VAptAkbBWSUMIFn/eZasQGN3blOvRdUfvhrcXb/jkL3SUcfArRYTcJztvhPb+cMD88G1vNpjur/viJ3RtLp+aQ==
 
 ajv-errors@^1.0.0:
   version "1.0.1"
