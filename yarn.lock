@@ -1359,10 +1359,10 @@ address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
-aiken-to-moodlexml@^1.0.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/aiken-to-moodlexml/-/aiken-to-moodlexml-1.1.1.tgz#73ada6e0bd36eecfc49e58790b0ba53c89479e1a"
-  integrity sha512-j23Jk5Rrzz7D8YctdJcSSuM4DA3OtlsAQAjHx29P4E94jWuByZEOZsg6wR2pJJpExeNXwMuJpsXIJz75oFR8zg==
+aiken-to-moodlexml@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/aiken-to-moodlexml/-/aiken-to-moodlexml-1.2.0.tgz#60f5885cf8b9c1f2b954b6aa381af0a28c4a73f5"
+  integrity sha512-t7l459nGdgSrgEKJ58uGwYWXjFVNPkE2Hl8QdrCX2FA1sXwXC9jA/pzxp8Bfw9Kly04LF9edBkKGNDAGsibWfw==
 
 ajv-errors@^1.0.0:
   version "1.0.1"
@@ -6547,7 +6547,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moodlexml-to-json@^1.0.1-beta:
+moodlexml-to-json@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/moodlexml-to-json/-/moodlexml-to-json-1.1.0.tgz#7021078e2e2a636fa5c277416ba4e9c97bd7577b"
   integrity sha512-40yktETTLuHpAkDBHBSsjPtkL7vs1vjhWl/W2zlr+vx+HcDbmjHrMSwUhVpPZak0hCNTtQvItQ5gIRXokkFIHg==
