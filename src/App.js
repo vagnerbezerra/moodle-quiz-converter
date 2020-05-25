@@ -3,6 +3,8 @@ import './App.css';
 import moodleXMLtoJson from 'moodlexml-to-json';
 import aikenToMoodleXML from 'aiken-to-moodlexml';
 import sampleAiken from './sampleAiken';
+// import * as Moodle from './moodle';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,11 @@ class App extends Component {
       left: sampleAiken,
       right :"",
       from: 'txt',
-      to: 'xml'
+      to: 'xml',
+      es: false,
+      nsnc: false,
+      penalty: false,
+      shuffle: false
     }
   }
   render() {
@@ -18,7 +24,7 @@ class App extends Component {
       <div className="App">
         <header>
           <h1> <i className="material-icons">school</i> QUIZ converter</h1>
-          <div class="links">
+          <div className="links">
             <a target="_blank" rel="noreferrer noopener" href="https://docs.moodle.org/38/en/Moodle_XML_format">MoodleXML</a>
             <a target="_blank" rel="noreferrer noopener" href="https://docs.moodle.org/38/en/Aiken_format">Aiken</a>
           </div>
@@ -31,6 +37,10 @@ class App extends Component {
               <option value="txt" >Aiken</option>
               {/* <option disabled value="json" >JSON</option> */}
             </select>
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.es} onChange={()=>this.setState({es: !this.state.es})}/>Spanish</label>: null}
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.nsnc} onChange={()=>this.setState({nsnc: !this.state.nsnc})}/>Empty option</label>: null}
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.penalty} onChange={()=>this.setState({penalty: !this.state.penalty})}/>Proportional penalty</label>: null}
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.shuffle} onChange={()=>this.setState({shuffle: !this.state.shuffle})}/>Shuffle</label>: null}
             
             </div>
             <textarea onChange={(e)=>{this.onWrite(e,'left')}} value={this.state.left}></textarea>
@@ -96,7 +106,7 @@ class App extends Component {
           
           this.setState({right});
         })
-      })
+      }, {lang: this.state.es ? "es": "en", penalty: this.state.penalty, nsnc: this.state.nsnc, shuffle: this.state.shuffle});
     } else if (from === "txt" && to === "xml") {
       aikenToMoodleXML(left, (res, err) => {
         if (err) {
@@ -109,7 +119,7 @@ class App extends Component {
           .replace(/\t/g, "  ");
           
           this.setState({right});
-      })
+      }, {lang: this.state.es ? "es": "en", penalty: this.state.penalty, nsnc: this.state.nsnc, shuffle: this.state.shuffle});
     } else if (from === "xml" && to === "xml") {
       this.setState({right: left});
     }
@@ -138,18 +148,18 @@ class App extends Component {
 
   componentDidMount(){
     window.onbeforeunload = (e) => {
-      let {left, right, from, to} = this.state;
+      let {left, right, from, to, es, penalty, nsnc, shuffle} = this.state;
       if (left === "") {
         localStorage.removeItem("moodleXMLtoJson");
       } else {
-        localStorage.moodleXMLtoJson = JSON.stringify({left, right, from, to});
+        localStorage.moodleXMLtoJson = JSON.stringify({left, right, from, to, es, penalty, nsnc, shuffle});
       }
     };
     if (localStorage.moodleXMLtoJson) {
-      const {left, from, to} = JSON.parse(localStorage.moodleXMLtoJson);
-      console.log(left, from, to)
-      this.setState({left, from, to});
+      const {left, from, to, es, penalty, nsnc, shuffle} = JSON.parse(localStorage.moodleXMLtoJson);
+      this.setState({left, from, to, es, penalty, nsnc, shuffle});
     }
+    // window.Moodle = Moodle;
   }
 
 
