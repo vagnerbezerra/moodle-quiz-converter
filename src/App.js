@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1> <i className="material-icons">school</i> QUIZ converter</h1>
+          <h1> <i className="material-icons">school</i> Conversor de QUIZ Moodle</h1>
           <div className="links">
             <a target="_blank" rel="noreferrer noopener" href="https://docs.moodle.org/38/en/Moodle_XML_format">MoodleXML</a>
             <a target="_blank" rel="noreferrer noopener" href="https://docs.moodle.org/38/en/Aiken_format">Aiken</a>
@@ -31,30 +31,30 @@ class App extends Component {
         </header>
        <div className="content"> 
           <div className="content-col left">
-            <div><h2>From</h2>
+            <div><h2>De</h2>
             <select onChange={(e)=>{this.setState({from: e.target.value})}} value={this.state.from}>
               <option value="xml" >MoodleXML</option>
               <option value="txt" >Aiken</option>
               {/* <option disabled value="json" >JSON</option> */}
             </select>
             {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.es} onChange={()=>this.setState({es: !this.state.es})}/>Spanish</label>: null}
-            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.nsnc} onChange={()=>this.setState({nsnc: !this.state.nsnc})}/>Empty option</label>: null}
-            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.penalty} onChange={()=>this.setState({penalty: !this.state.penalty})}/>Proportional penalty</label>: null}
-            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.shuffle} onChange={()=>this.setState({shuffle: !this.state.shuffle})}/>Shuffle</label>: null}
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.nsnc} onChange={()=>this.setState({nsnc: !this.state.nsnc})}/>Opções Vazias</label>: null}
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.penalty} onChange={()=>this.setState({penalty: !this.state.penalty})}/>Penalizar Proporcionalmente</label>: null}
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.shuffle} onChange={()=>this.setState({shuffle: !this.state.shuffle})}/>Embaralhar</label>: null}
             
             </div>
             <textarea onChange={(e)=>{this.onWrite(e,'left')}} value={this.state.left}></textarea>
             <div className="buttons">
               <button onClick={this.convert.bind(this)}>
-                <i className="material-icons">play_arrow</i>Convert
+                <i className="material-icons">play_arrow</i>Converter
               </button>
               <button onClick={this.reset.bind(this)}>
-                <i className="material-icons">replay</i>Reset
+                <i className="material-icons">replay</i>Limpar
               </button>
             </div>
           </div>
           <div className="content-col right">
-            <div><h2>To</h2>
+            <div><h2>Para</h2>
             <select onChange={(e)=>{this.setState({to: e.target.value})}} value={this.state.to}>
               <option value="xml" >MoodleXML</option>
               {/* <option disabled value="txt" >Aiken</option> */}
@@ -67,7 +67,7 @@ class App extends Component {
                 this.refs.right.select();
                 document.execCommand('copy');
               }}>
-                <i className="material-icons">file_copy</i>Copy
+                <i className="material-icons">file_copy</i>Copiar
               </button>
               <button onClick={()=>{this.download("quiz."+this.state.to, this.state.right)}}>
                 <i className="material-icons">cloud_download</i>Download
