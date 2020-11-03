@@ -37,10 +37,9 @@ class App extends Component {
               <option value="txt" >Aiken</option>
               {/* <option disabled value="json" >JSON</option> */}
             </select>
-            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.es} onChange={()=>this.setState({es: !this.state.es})}/>Spanish</label>: null}
             {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.nsnc} onChange={()=>this.setState({nsnc: !this.state.nsnc})}/>Opções Vazias</label>: null}
             {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.penalty} onChange={()=>this.setState({penalty: !this.state.penalty})}/>Penalizar Proporcionalmente</label>: null}
-            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.shuffle} onChange={()=>this.setState({shuffle: !this.state.shuffle})}/>Embaralhar</label>: null}
+            {this.state.from === "txt"? <label className="lc"><input type="checkbox" checked={this.state.shuffle} onChange={()=>this.setState({shuffle: !this.state.shuffle})}/>Embaralhar Respostas</label>: null}
             
             </div>
             <textarea onChange={(e)=>{this.onWrite(e,'left')}} value={this.state.left}></textarea>
