@@ -16,7 +16,7 @@ class App extends Component {
       es: false,
       nsnc: false,
       penalty: false,
-      shuffle: false
+      shuffle: true
     }
   }
   render() {
